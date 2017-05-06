@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import classNames from 'classnames';
 import {autoBindHandlers, bottom, childrenEqual, cloneLayoutItem, compact, getLayoutItem, moveElement,
-  synchronizeLayoutWithChildren, validateLayout} from './utils';
+  synchronizeLayoutWithChildren, validateLayout, baseFontSize} from './utils';
 import GridItem from './GridItem';
 const noop = function() {};
 
@@ -202,7 +202,19 @@ export default class ReactGridLayout extends React.Component {
     if (!this.props.autoSize) return;
     const nbRow = bottom(this.state.layout);
     const containerPaddingY = this.props.containerPadding ? this.props.containerPadding[1] : this.props.margin[1];
-    return nbRow * this.props.rowHeight + (nbRow - 1) * this.props.margin[1] + containerPaddingY * 2 + 'px';
+    const height = (nbRow * this.props.rowHeight + (nbRow - 1) * this.props.margin[1] + containerPaddingY * 2);
+
+    switch (this.props.sizeMetric) {
+    case 'rem': {
+      return (height / baseFontSize()) + 'rem';
+    }
+    case 'px':
+    default: {
+      return height + 'px';
+    }
+    }
+
+    return  + 'px';
   }
 
   /**
@@ -373,6 +385,7 @@ export default class ReactGridLayout extends React.Component {
         rowHeight={rowHeight}
         isDraggable={false}
         isResizable={false}
+        sizeMetric={this.props.sizeMetric}
         useCSSTransforms={useCSSTransforms}>
         <div />
       </GridItem>
@@ -428,6 +441,7 @@ export default class ReactGridLayout extends React.Component {
         maxH={l.maxH}
         maxW={l.maxW}
         static={l.static}
+        sizeMetric={this.props.sizeMetric}
         >
         {child}
       </GridItem>

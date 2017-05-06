@@ -211,11 +211,11 @@ export default class GridItem extends React.Component {
     let style;
     // CSS Transforms support (default)
     if (useCSSTransforms) {
-      style = setTransform(pos);
+      style = setTransform(pos, this.props.sizeMetric);
     }
     // top,left (slow)
     else {
-      style = setTopLeft(pos);
+      style = setTopLeft(pos, this.props.sizeMetric);
 
       // This is used for server rendering.
       if (usePercentages) {
@@ -361,8 +361,9 @@ export default class GridItem extends React.Component {
     const child = React.Children.only(this.props.children);
 
     // Create the child element. We clone the existing element but modify its className and style.
+    const className = 'react-grid-item' + ((this.props.sizeMetric && ' sizing-' + this.props.sizeMetric) || '');
     let newChild = React.cloneElement(child, {
-      className: classNames('react-grid-item', child.props.className, this.props.className, {
+      className: classNames(className, child.props.className, this.props.className, {
         static: this.props.static,
         resizing: Boolean(this.state.resizing),
         'react-draggable': isDraggable,

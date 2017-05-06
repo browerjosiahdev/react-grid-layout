@@ -46,3 +46,9 @@
   box-sizing: border-box;
   cursor: se-resize;
 }
+
+.react-grid-item.sizing-rem > .react-resizable-handle {
+  width: 2rem;
+  height: 2rem;
+  padding: 0 0.3rem 0.3rem 0;
+}

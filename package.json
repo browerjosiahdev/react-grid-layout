@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:STRML/react-grid-layout.git"
+    "url": "git@github.com:browerjosiahdev/react-grid-layout.git"
   },
   "keywords": [
     "react",
@@ -26,12 +26,12 @@
     "fluid",
     "responsive"
   ],
-  "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
+  "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/), Josiah Brower <brower.josiah.dev@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/STRML/react-grid-layout/issues"
+    "url": "https://github.com/browerjosiahdev/react-grid-layout/issues"
   },
-  "homepage": "https://github.com/STRML/react-grid-layout",
+  "homepage": "https://github.com/browerjosiahdev/react-grid-layout",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash.isequal": "^4.0.0",
